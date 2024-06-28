@@ -3,7 +3,7 @@
 import { scrapeAndStoreProduct } from "@/lib/action";
 import { FormEvent, useState } from "react";
 
-const isValidAmazonProductURL = (url: String) => {
+const isValidAmazonProductURL = (url: string) => {
   try {
     const parsedURL = new URL(url);
     const hostname = parsedURL.hostname;
