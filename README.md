@@ -1,9 +1,4 @@
-<div align="center">
-  <br />
-    <a href="" target="_blank">
-      <img src="https://github.com/gaurav031/Scrape/assets/logo.png" alt="Project Banner">
-    </a>
-  <br />
+
 
   <div>
    <img src="https://img.shields.io/badge/-Web_Scraping-black?style=for-the-badge&logoColor=white&color=FF0000" alt="webscraping" />
