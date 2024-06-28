@@ -6,13 +6,13 @@ import Product from "@/lib/models/product.model";
 import { scrapeAmazonProduct } from "@/lib/scraper";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 
-export const maxDuration = 300; // This function can run for a maximum of 300 seconds
+export const maxDuration = 60; // Update maxDuration to fit Vercel's limit
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function GET(request: Request) {
   try {
-    connectToDB();
+    await connectToDB();
 
     const products = await Product.find({});
 
@@ -46,7 +46,8 @@ export async function GET(request: Request) {
           {
             url: product.url,
           },
-          product
+          product,
+          { new: true }
         );
 
         // ======================== 2 CHECK EACH PRODUCT'S STATUS & SEND EMAIL ACCORDINGLY
@@ -55,7 +56,7 @@ export async function GET(request: Request) {
           currentProduct
         );
 
-        if (emailNotifType && updatedProduct.users.length > 0) {
+        if (emailNotifType && updatedProduct?.users.length > 0) {
           const productInfo = {
             title: updatedProduct.title,
             url: updatedProduct.url,
